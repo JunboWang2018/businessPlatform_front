@@ -73,13 +73,8 @@ public class OrderServiceImpl implements OrderService {
             if (resultProd == null) {
                 continue;
             }
-            if (resultProd.getSaleWayCode().equals("AUCTI")) {
-                //竞价商品
-                result = this.addOrderForAuctiProd(resultProd);
-            } else {
-                //非竞价商品
-                result = this.addOrderForOtherProd(resultProd, resultUser);
-            }
+            //非竞价商品
+            result = this.addOrderForOtherProd(resultProd, resultUser);
         }
         return result;
     }
@@ -154,50 +149,6 @@ public class OrderServiceImpl implements OrderService {
             return Result.SUCCESS;
         }
         return Result.FAILED;
-    }
-
-    private Result addOrderForAuctiProd(ProductDo productDo) {
-        Integer result = null;
-        //查找竞拍记录表
-        AuctionRecordDo queryAuctionRecord = new AuctionRecordDo();
-        queryAuctionRecord.setProdNumber(productDo.getNumber());
-        List<AuctionRecordDo> auctionRecordDos = auctionRecordService.selectAuctionRecordList(queryAuctionRecord);
-        //若记录为空，则设置商品下架（流拍）
-        if (auctionRecordDos == null || auctionRecordDos.size() == 0) {
-            productDo.setSellStatus(-1);
-            productDo.setModifyTime(new Timestamp(System.currentTimeMillis()));
-            result = productDao.updateProduct(productDo);
-        } else {
-            //取出价最高的记录
-            AuctionRecordDo maxPriceRecord = auctionRecordDos.get(0);
-            for (int i = 0; i < auctionRecordDos.size(); i++) {
-                if (maxPriceRecord.getPrice().doubleValue() < auctionRecordDos.get(i).getPrice().doubleValue()) {
-                    maxPriceRecord = auctionRecordDos.get(i);
-                }
-            }
-            //生成订单(库存数量即为交易数量，物流信息暂空，支付后设置已下单)
-            OrderDo orderDo = new OrderDo();
-            orderDo.setIsActive(1);
-            String orderNumber = AutoGenerateNumberUtil.getAutoGenerateId("ORDER");
-            orderDo.setOrderNumber(orderNumber);
-            orderDo.setProdNumber(productDo.getNumber());
-            orderDo.setQuantity(productDo.getQuantity());
-            orderDo.setPrice(productDo.getQuantity().intValue() * productDo.getPrice().doubleValue());
-            orderDo.setUserId(maxPriceRecord.getUserId());
-            orderDo.setIsPaid(0);
-            result = orderDao.addOrder(orderDo);
-            //生成成功设置已售出
-            if (result == 1) {
-                productDo.setSellStatus(0);
-                productDo.setModifyTime(new Timestamp(System.currentTimeMillis()));
-                result = productDao.updateProduct(productDo);
-            }
-        }
-        if (result == 1) {
-            return Result.SUCCESS;
-        } else {
-            return Result.GENER_ORDER_FAILED;
-        }
     }
 
     private Result addOrderForOtherProd(ProductDo productDo, UserDo userDo) {

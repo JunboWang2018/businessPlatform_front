@@ -60,7 +60,7 @@
                 //计算倒计时秒数
                 var prodCreateDate = new Date("${prodQo.auctionInfoDo.createTime}").getTime();
                 var currentMillis = new Date().getTime();
-                var times = Math.floor((prodCreateDate + ${prodQo.auctionInfoDo.deadline} * 1000 - currentMillis - 8 * 60 * 60 * 1000) / 1000);
+                var times = Math.floor((prodCreateDate + ${prodQo.auctionInfoDo.deadline} * 1000 - currentMillis) / 1000);
                 timeDown(times);
             });
         </script>
