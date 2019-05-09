@@ -126,6 +126,27 @@ public class CartServiceImpl implements CartService {
         return cartList.get(0);
     }
 
+
+    @Override
+    public int getUserCartTotalNumber(UserDo sessionUser) {
+        //未登录返回0
+        if (sessionUser == null) {
+            return 0;
+        }
+        UserDo queryUser = new UserDo();
+        queryUser.setUsername(sessionUser.getUsername());
+        UserDo resultUser = userService.selectUser(queryUser);
+        //设置用户id，从购物车中查找记录
+        CartDo queryCart = new CartDo();
+        queryCart.setUserId(resultUser.getUserId());
+        queryCart.setIsActive(1);
+        List<CartDo> cartList = this.selectCartList(queryCart);
+        if (cartList == null) {
+            return 0;
+        }
+        return cartList.size();
+    }
+
     /**
      * 封装购物车商品信息
      * @param cartDo

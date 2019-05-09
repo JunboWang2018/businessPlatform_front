@@ -44,4 +44,12 @@ public interface CartService {
      * @return
      */
     CartDo selectCart(CartDo cartDo);
+
+
+    /**
+     * 查找用户购物车商品数量
+     * @param sessionUser
+     * @return
+     */
+    int getUserCartTotalNumber(UserDo sessionUser);
 }
