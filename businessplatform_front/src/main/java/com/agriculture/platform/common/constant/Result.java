@@ -42,7 +42,8 @@ public enum Result {
     DELETE_USER_FAILED(23, "删除用户成功"),
     PROD_NUMBERS_IS_NULL(24, "未选中商品"),
     GENER_ORDER_FAILED(25, "提交订单失败"),
-    ORDER_NUM_BIG(26, "库存数量不足，提交订单失败");
+    ORDER_NUM_BIG(26, "库存数量不足，提交订单失败"),
+    NO_POWER_TO_LOGIN(27, "没有权限登录");
 
     private int code;
     private String message;

@@ -53,6 +53,8 @@ public class UserServiceImpl implements UserService {
             return Result.USER_NOT_EXIST;
         } else if (!resultList.get(0).getPassword().equals(MD5.getMD5Code(userDo.getPassword()))) {
             return  Result.PASSWORD_ERROR;
+        } else if (!resultList.get(0).getPower().equals("user")) {
+            return Result.NO_POWER_TO_LOGIN;
         } else {
             return Result.LOGIN_SUCCESS;
         }
