@@ -227,6 +227,7 @@ public class OrderServiceImpl implements OrderService {
         orderDo.setPrice(resultCart.getQuantity().intValue() * productDo.getPrice().doubleValue());
         orderDo.setUserId(userDo.getUserId());
         orderDo.setIsPaid(0);
+        orderDo.setLogisticInfoCode("USHIP");
         result = orderDao.addOrder(orderDo);
         //已提交订单，删除购物车记录
         if (result == 1) {
