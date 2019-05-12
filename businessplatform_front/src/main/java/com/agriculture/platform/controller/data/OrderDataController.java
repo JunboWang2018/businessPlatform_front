@@ -78,4 +78,13 @@ public class OrderDataController extends BaseDataController {
         result = orderService.deleteOrder(orderDo, sessionUser);
         return this.responseMsg(result.getCode(), result.getMessage());
     }
+
+    @ResponseBody
+    @RequestMapping("/prodInfoBuy")
+    public RespJson prodInfoBuy(OrderDo orderDo, HttpSession session) {
+        UserDo sessionUser = (UserDo) session.getAttribute("user");
+        Result result = null;
+        result = orderService.prodInfoBuy(orderDo, sessionUser);
+        return this.responseMsg(result.getCode(), result.getMessage());
+    }
 }

@@ -54,4 +54,12 @@ public interface OrderService {
      */
     Result deleteOrder(OrderDo orderDo, UserDo sessionUser) throws IllegalArgumentException;
 
+    /**
+     * 一键下单
+     * @param orderDo
+     * @param sessionUser
+     * @return
+     */
+    Result prodInfoBuy(OrderDo orderDo, UserDo sessionUser);
+
 }

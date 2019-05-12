@@ -34,27 +34,28 @@
         };
         </script>
 
-        <script src="/businessPlatform/js/lib/jquery-1.5.1.min.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/lib/jquery.alerts.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/common.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/cart.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/cloud-zoom.1.0.2.min.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/lib/jquery.thickbox.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/goods.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/NewVersion.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/png.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/qiangGouPro.js?v=20160713" type="text/javascript"></script>
-        <script src="/businessPlatform/js/lib/jquery.cookie.js?v=20160713" type="text/javascript"></script>
-        <script src='/businessPlatform/js/lib/jquery.lazyload.js?v=20160713' type='text/javascript'></script>
-        <script type="text/javascript" src="/businessPlatform/js/lib/jquery.qrcode.js?v=20160713"></script>
-        <script type="text/javascript" src="/businessPlatform/js/qrcode.js?v=20160713"></script>
-        <script type="text/javascript" src="/businessPlatform/js/cookie.js?v=20160416222"></script>
-        <script type="text/javascript" src="/businessPlatform/js/shadow.js?v=20160416"></script>
+        <script src="/businessPlatform/js/lib/jquery-1.5.1.min.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/lib/jquery.alerts.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/common.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/cart.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/order.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/cloud-zoom.1.0.2.min.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/lib/jquery.thickbox.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/goods.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/NewVersion.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/png.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/qiangGouPro.js" type="text/javascript"></script>
+        <script src="/businessPlatform/js/lib/jquery.cookie.js" type="text/javascript"></script>
+        <script src='/businessPlatform/js/lib/jquery.lazyload.js' type='text/javascript'></script>
+        <script type="text/javascript" src="/businessPlatform/js/lib/jquery.qrcode.js"></script>
+        <script type="text/javascript" src="/businessPlatform/js/qrcode.js"></script>
+        <script type="text/javascript" src="/businessPlatform/js/cookie.js"></script>
+        <script type="text/javascript" src="/businessPlatform/js/shadow.js"></script>
         <script src="/businessPlatform/js/product.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/base_w1200.css?v=20160713">
-        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/product.css?v=20160713">
-        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/jquery.alerts.css?v=20160713" />
-        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/common.css?v=20160713" />
+        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/base_w1200.css">
+        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/product.css">
+        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/jquery.alerts.css" />
+        <link rel="stylesheet" type="text/css" href="/businessPlatform/css/common.css" />
         <script type="text/javascript">
             $(function () {
                 //计算倒计时秒数
@@ -138,6 +139,7 @@
                                     </span>
                                 </div>
                                 <div class="pBtn" id="cart-add-btn-sf"><a onclick="cartAdd('${prodQo.productDo.number}')"><b></b>加入购物车</a></div>
+                                <div class="pBtn quickBuy" id="quickBuy" title="快速下单，直达填写订单页面"><a onclick="prodInfoBuy('${prodQo.productDo.number}');">一键购买</a></div>
                             </c:if>
                             <c:if test="${prodQo.productDo.sellStatus == 0 && prodQo.productDo.isActive == 1}">
                                 <div class="pBtn" id="cart-add-btn-sf"><a  style="color: #5e5e5e" onclick="cartAdd(${prodQo.productDo.number}, 0, 1, 0, 1, this);"><b></b>已售罄</a></div>

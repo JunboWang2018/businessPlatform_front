@@ -12,6 +12,7 @@ import com.agriculture.platform.service.order.OrderService;
 import com.agriculture.platform.service.product.ProductService;
 import com.agriculture.platform.service.user.UserService;
 import com.agriculture.platform.utils.AutoGenerateNumberUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +152,49 @@ public class OrderServiceImpl implements OrderService {
         return Result.FAILED;
     }
 
+    @Override
+    public Result prodInfoBuy(OrderDo orderDo, UserDo sessionUser) {
+        if (StringUtils.isEmpty(orderDo.getProdNumber()) || orderDo.getQuantity() == null || orderDo.getQuantity() == 0) {
+            return Result.FAILED;
+        }
+        ProductDo queryProd = new ProductDo();
+        queryProd.setNumber(orderDo.getProdNumber());
+        ProductDo resultProd = productService.selectProduct(queryProd);
+        if (resultProd == null) {
+            return Result.FAILED;
+        }
+        if (resultProd.getQuantity().intValue() < orderDo.getQuantity().intValue()) {
+            return Result.ORDER_NUM_BIG;
+        }
+        //减去库存数量，并保存，若库存为0，设置已售罄
+        int quantity = resultProd.getQuantity().intValue() - orderDo.getQuantity().intValue();
+        resultProd.setQuantity(quantity);
+        if (quantity == 0) {
+            resultProd.setSellStatus(0);
+        }
+        productDao.updateProduct(resultProd);
+        //查询用户信息
+        UserDo queryUser = new UserDo();
+        queryUser.setUsername(sessionUser.getUsername());
+        UserDo resultUser = userService.selectUser(queryUser);
+        if (resultUser == null) {
+            return Result.FAILED;
+        }
+        //生成订单
+        orderDo.setIsActive(1);
+        String orderNumber = AutoGenerateNumberUtil.getAutoGenerateId("ORDER");
+        orderDo.setOrderNumber(orderNumber);
+        orderDo.setPrice(orderDo.getQuantity().intValue() * resultProd.getPrice().doubleValue());
+        orderDo.setUserId(resultUser.getUserId());
+        orderDo.setIsPaid(0);
+        Integer result = orderDao.addOrder(orderDo);
+        if (result == 1) {
+            return Result.SUCCESS;
+        } else {
+            return Result.GENER_ORDER_FAILED;
+        }
+    }
+
     private Result addOrderForOtherProd(ProductDo productDo, UserDo userDo) {
         Integer result = null;
         //查购物车表
@@ -168,7 +212,7 @@ public class OrderServiceImpl implements OrderService {
         }
         //减去库存数量，并保存，若库存为0，设置已售罄
         int quantity = productDo.getQuantity().intValue() - resultCart.getQuantity().intValue();
-        productDo.setQuantity(productDo.getQuantity().intValue() - resultCart.getQuantity().intValue());
+        productDo.setQuantity(quantity);
         if (quantity <= 0) {
             productDo.setSellStatus(0);
         }
