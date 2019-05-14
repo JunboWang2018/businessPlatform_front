@@ -53,6 +53,9 @@ public class CartDataController extends BaseDataController {
         } catch (IllegalArgumentException e) {
             LOGGER.error(e.getMessage());
         }
+        if (result == Result.SUCCESS) {
+            session.setAttribute("cartTotal", cartService.getUserCartTotalNumber(sessionUser));
+        }
         return this.responseMsg(result.getCode(), result.getMessage());
     }
 

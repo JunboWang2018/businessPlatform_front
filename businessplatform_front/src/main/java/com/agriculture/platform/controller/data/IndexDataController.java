@@ -41,7 +41,7 @@ public class IndexDataController extends BaseDataController {
         List<ProductTypeDo> prodTypeList = prodTypeService.selectProdTypeList(new ProductTypeDo());
         model.addAttribute("prodTypeList", prodTypeList);
         UserDo sessionUser = (UserDo) session.getAttribute("user");
-        model.addAttribute("cartTotal", cartService.getUserCartTotalNumber(sessionUser));
+        session.setAttribute("cartTotal", cartService.getUserCartTotalNumber(sessionUser));
         return "/index.jsp";
     }
 }
