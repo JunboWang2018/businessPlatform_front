@@ -8,8 +8,9 @@ function deleteAllOrder() {
         dataType : "json",
         success : function (result) {
             if (result.code == 1000) {
-                jAlert("取消所有订单成功", "成功");
-                document.location.reload();
+                jAlert("取消所有订单成功", "成功", function () {
+                    document.location.reload();
+                });
             }  else {
                 jAlert("取消所有订单失败，原因是：" + result.message, "失败");
             }
@@ -33,8 +34,9 @@ function deleteOrder(orderNumber) {
         },
         success : function (result) {
             if (result.code == 1000) {
-                jAlert("取消该订单成功", "成功");
-                document.location.reload();
+                jAlert("取消该订单成功", "成功",function () {
+                    document.location.reload();
+                });
             }  else {
                 jAlert("取消该订单失败，原因是：" + result.message, "失败");
             }
@@ -47,7 +49,7 @@ function deleteOrder(orderNumber) {
 
 function prodInfoBuy(prodNumber) {
   var quantity = document.getElementById("number_" + prodNumber).value;
-  var confirmStr = "您要购买的数量是 " + quantity + " 。是否确认下单？"
+  var confirmStr = "您要购买的数量是 " + quantity + " 。是否确认下单？";
   if (!confirm(confirmStr)) {
     return;
   }

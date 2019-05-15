@@ -50,7 +50,7 @@
                     <div class="l-wrap">
                         <div class="pic">
                             <a class="trackref" href="/businessPlatform/data/product/selectProdInfo?number=${prodQo.productDo.number}" title="${prodQo.productDo.name}" target="_blank">
-                                <img src="http://localhost:8081/businessPlatform/prodImage/${prodQo.productDo.imageMain}" style="display:inline"/>
+                                <img src="http://localhost:8081/businessPlatformManage/prodImage/${prodQo.productDo.imageMain}" style="display:inline"/>
                             </a>
                         </div>
                         <div class="price">

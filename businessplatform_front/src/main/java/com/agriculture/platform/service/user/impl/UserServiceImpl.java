@@ -114,4 +114,53 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public Result modifyUserInfo(UserDo userDo, UserDo sessionUser) {
+        if (sessionUser == null) {
+            return Result.FAILED;
+        }
+        UserDo queryUser = new UserDo();
+        queryUser.setUsername(sessionUser.getUsername());
+        UserDo resultUser = this.selectUser(queryUser);
+        if (resultUser == null) {
+            return Result.USER_NOT_EXIST;
+        }
+        //检查修改
+        boolean flag = this.checkModify(resultUser, userDo);
+        //如果没有修改，则返回
+        if (!flag) {
+            return Result.USER_INFO_NOT_CHANGE;
+        }
+        Integer result = userDao.updateUser(resultUser);
+        if (result >= 1) {
+            return Result.SUCCESS;
+        }
+        return Result.FAILED;
+    }
+
+    /**
+     * 检查修改
+     * @param oldUser
+     * @param newUser
+     * @return
+     */
+    private boolean checkModify(UserDo oldUser, UserDo newUser) {
+        //默认无修改
+        boolean flag = false;
+        //若旧密码和新密码不一致，则更新密码
+        if (newUser.getPassword() != null && !oldUser.getPassword().equals(MD5.getMD5Code(newUser.getPassword()))) {
+            oldUser.setPassword(MD5.getMD5Code(newUser.getPassword()));
+            flag = true;
+        }
+        //若收货地址不一致，则更新
+        if (oldUser.getAddress() == null) {
+            oldUser.setAddress("");
+        }
+        if (newUser.getAddress() != null && !oldUser.getAddress().equals(newUser.getAddress())) {
+            oldUser.setAddress(newUser.getAddress());
+            flag = true;
+        }
+        return flag;
+    }
 }

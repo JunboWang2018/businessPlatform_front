@@ -79,7 +79,7 @@
 						<div class="pItem tProdName">
 							<div class="cart_pimg">
 								<a target="_blank" title="${cart.productDo.name}" href="/businessPlatform/data/product/selectProdInfo?number=${cart.productDo.number}">
-								<img src="http://localhost:8081/businessPlatform/prodImage/${cart.productDo.imageMain}" style="width: 60px;height: 60px;"/>
+								<img src="http://localhost:8081/businessPlatformManage/prodImage/${cart.productDo.imageMain}" style="width: 60px;height: 60px;"/>
 								</a>
 							</div>
 							<div class="cart_pname">

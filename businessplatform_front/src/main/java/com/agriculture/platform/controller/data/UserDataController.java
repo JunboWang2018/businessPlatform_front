@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,6 +47,8 @@ public class UserDataController extends BaseDataController{
         }
         //若登录成功，将用户名放入session
         if (result == Result.LOGIN_SUCCESS) {
+            //清除密码
+            userDo.setPassword(null);
             session.setAttribute("user", userDo);
         }
          return this.responseMsg(result.getCode(), result.getMessage());
@@ -72,6 +75,43 @@ public class UserDataController extends BaseDataController{
         }
         return this.responseMsg(result.getCode(), result.getMessage());
     }
+
+    /**
+     * 用户信息
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("/userInfo")
+    public String userInfo(HttpSession session, Model model) {
+        UserDo sessionUser = (UserDo) session.getAttribute("user");
+        if (sessionUser == null) {
+            return "/user/login.jsp";
+        }
+        UserDo resultUser = userService.selectUser(sessionUser);
+        model.addAttribute("userInfo", resultUser);
+        return "/user/myUser.jsp";
+    }
+
+    /**
+     * 用户信息修改
+     * @param userDo
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/modifyUserInfo")
+    public RespJson modifyUserInfo(UserDo userDo, HttpSession session) {
+        UserDo sessionUser = (UserDo) session.getAttribute("user");
+        Result result = null;
+        try {
+            result = userService.modifyUserInfo(userDo, sessionUser);
+        } catch (IllegalArgumentException e) {
+            return this.handleIllegalArgumentException(e);
+        }
+        return this.responseMsg(result.getCode(), result.getMessage());
+    }
+
 
     /**
      * 用户退出:

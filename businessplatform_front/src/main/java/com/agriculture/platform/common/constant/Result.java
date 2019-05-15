@@ -43,7 +43,8 @@ public enum Result {
     PROD_NUMBERS_IS_NULL(24, "未选中商品"),
     GENER_ORDER_FAILED(25, "提交订单失败"),
     ORDER_NUM_BIG(26, "库存数量不足，提交订单失败"),
-    NO_POWER_TO_LOGIN(27, "没有权限登录");
+    NO_POWER_TO_LOGIN(27, "没有权限登录"),
+    USER_INFO_NOT_CHANGE(28, "请先修改用户信息再提交保存！");
 
     private int code;
     private String message;

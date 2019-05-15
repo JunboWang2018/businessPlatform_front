@@ -45,7 +45,7 @@
 					<c:forEach items="${indexRecommendProdList}" var="prod" varStatus="status">
 						<li>
 							<a name="sfbest_hp_hp_focus_${prod.number}" class="fore_pic trackref" href="/businessPlatform/data/product/selectProdInfo?number=${prod.number}" target="_blank">
-								<img id="lunbo_1" alt="${prod.name}"	src="http://localhost:8081/businessPlatform/prodImage/${prod.imageMain}">
+								<img id="lunbo_1" alt="${prod.name}"	src="http://localhost:8081/businessPlatformManage/prodImage/${prod.imageMain}">
 							</a>
 						</li>
 					</c:forEach>
@@ -119,7 +119,7 @@
 									<a
 											href="/businessPlatform/data/product/selectProdInfo?number=${prod.number}"
 											target="_blank" title="${prod.name}">
-										<img class="lazy" src="http://localhost:8081/businessPlatform/prodImage/${prod.imageMain}" style="display: block;">
+										<img class="lazy" src="http://localhost:8081/businessPlatformManage/prodImage/${prod.imageMain}" style="display: block;">
 									</a>
 									<div class="gBtn p-btn">
 										<a pid="218031"

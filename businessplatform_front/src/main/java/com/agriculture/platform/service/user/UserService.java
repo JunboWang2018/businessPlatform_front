@@ -40,4 +40,12 @@ public interface UserService {
      */
     UserDo selectUser(UserDo userDo);
 
+    /**
+     * 修改用户信息
+     * @param userDo
+     * @param sessionUser
+     * @return
+     */
+    Result modifyUserInfo(UserDo userDo, UserDo sessionUser);
+
 }

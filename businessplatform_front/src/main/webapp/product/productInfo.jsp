@@ -153,7 +153,7 @@
             <div class="pView">
                                     <div id="pView">
                     <div id="zoom-jpg" class="jqzoom">
-                    <img alt="" width="330" height="330" src="http://localhost:8081/businessPlatform/prodImage/${prodQo.productDo.imageMain}"/>
+                    <img alt="" width="330" height="330" src="http://localhost:8081/businessPlatformManage/prodImage/${prodQo.productDo.imageMain}"/>
                     </div>
                     <div id="pic-list">
                         <a href="javascript:void(0);" class="btn-control disabled" id="btn-forward"><b></b></a>
@@ -302,13 +302,13 @@
             <div class="l-recommend">
                 <div class="ct"><h2>购买此商品的顾客还买了</h2></div>
                 <div class="cm">
-                    <ul class="l-buy" id="buyrebuy-sf"><li><div class="p-img"><a target="_blank" href="#"><img src="http://localhost:8081/businessPlatform/prodImage/PROD1079616325_1.jpg"></a></div><div class="title-a"><a target="_blank" href="/businessPlatform/data/product/selectProdInfo?number=PROD1079616325">农家散养纯土鸡蛋新鲜农村自养 天然柴鸡蛋笨鸡蛋草鸡蛋40枚包邮</a></div><div class="title-b">【下单后3天发货】请以实物为准</div><div class="p-price">￥46.9</div></li></ul>
+                    <ul class="l-buy" id="buyrebuy-sf"><li><div class="p-img"><a target="_blank" href="#"><img src="http://localhost:8081/businessPlatformManage/prodImage/PROD1079616325_1.jpg"></a></div><div class="title-a"><a target="_blank" href="/businessPlatform/data/product/selectProdInfo?number=PROD1079616325">农家散养纯土鸡蛋新鲜农村自养 天然柴鸡蛋笨鸡蛋草鸡蛋40枚包邮</a></div><div class="title-b">【下单后3天发货】请以实物为准</div><div class="p-price">￥46.9</div></li></ul>
                 </div>
             </div>
             <div class="l-recommend">
                 <div class="ct"><h2>浏览此商品的顾客还浏览了</h2></div>
                 <div class="cm">
-                    <ul class="l-buy" id="browserbrowse-sf"><li><div class="p-img"><a target="_blank" href="#"><img src="http://localhost:8081/businessPlatform/prodImage/PROD1635865388_1.jpg"></a></div><div class="title-a"><a target="_blank" href="/businessPlatform/data/product/selectProdInfo?number=PROD1635865388">吖眯鸡胸肉健身即食代餐食品轻食高蛋白常温低脂代餐鸡胸</a></div><div class="title-b">【下单后3天发货】请以实物为准</div><div class="p-price">￥57.5</div></li></ul>
+                    <ul class="l-buy" id="browserbrowse-sf"><li><div class="p-img"><a target="_blank" href="#"><img src="http://localhost:8081/businessPlatformManage/prodImage/PROD1635865388_1.jpg"></a></div><div class="title-a"><a target="_blank" href="/businessPlatform/data/product/selectProdInfo?number=PROD1635865388">吖眯鸡胸肉健身即食代餐食品轻食高蛋白常温低脂代餐鸡胸</a></div><div class="title-b">【下单后3天发货】请以实物为准</div><div class="p-price">￥57.5</div></li></ul>
                 </div>
             </div>
         </div>

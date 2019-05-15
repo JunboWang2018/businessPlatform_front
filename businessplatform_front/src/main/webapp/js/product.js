@@ -2145,11 +2145,13 @@ function addAuctionRecord(prodNumber) {
         },
         success : function (result) {
             if (result.code == 1006) {
-                alert("出价成功");
-                window.location.reload();
+                jAlert("出价成功", "成功", function () {
+                    window.location.reload();
+                })
             } else if (result.code == 10) {
-                jAlert("出价失败，原因是：" + result.message, "失败");
-                window.href = getRootPath() + "/view/user/toLogin";
+                jAlert("出价失败，原因是：" + result.message, "失败", function () {
+                    window.href = getRootPath() + "/view/user/toLogin";
+                });
             } else {
                 jAlert("出价失败，原因是：" + result.message, "失败");
             }

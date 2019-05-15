@@ -65,7 +65,7 @@
 									<span class="border" style="position:relative">
 										<input id="password" name="password" class="required" tabindex="2" type="password" value="" autocomplete="off">
 										<em class="icon2" id="passwordlogo"></em>
-								<span style="position: absolute; font-size: 14px; left: 5px; top: 9px;display:none;" class="sfbest_password_place">密码</span>
+										<span style="position: absolute; font-size: 14px; left: 5px; top: 9px;display:none;" class="sfbest_password_place">密码</span>
 									</span>
 									<span id="sfbestPwdErr"></span>
 								</li>

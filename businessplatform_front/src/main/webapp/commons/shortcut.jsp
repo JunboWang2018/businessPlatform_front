@@ -14,6 +14,7 @@
         </c:if>
         <c:if test="${!empty sessionScope.user}">
             <li>你好，${sessionScope.user.username}</li>
+            <li class="login"><a href="/businessPlatform/data/user/userInfo">账号管理</a></li>
             <li class="login"><a href="/businessPlatform/data/user/logout">退出</a></li>
             <li class="myOrder"><a name="sfbest_hp_hp_head_OrderList" class="trackref" href="/businessPlatform/data/order/selectOrderInfoQoList" rel="nofollow">我的订单</a></li>
         </c:if>
